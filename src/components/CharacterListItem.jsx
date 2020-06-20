@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { getCharacterImageUrl } from '../utilities/characterUtilities';
 
 const NavItem = styled(NavLink)`
 	text-decoration:none;
-`;
-
-const getCharacterImageUrl = (character) => `
-	${character.thumbnail.path}.${character.thumbnail.extension}
 `;
 
 class CharacterListItem extends Component {

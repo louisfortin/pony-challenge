@@ -38,6 +38,11 @@ body {
 	display: block;
 }
 
+.hero-picture {
+	float: right;
+	width: 50%;
+	margin: 0 0 10px 15px !important;
+}
 
 @media all and (max-width: 1000px)  {
 	.hero {
@@ -53,5 +58,10 @@ body {
 	.hero .picture {
 		width: 100%;
 		height: auto;
+	}
+
+	.hero-picture {
+		width: 100%;
+		margin: 0 0 10px 0 !important;
 	}
 }

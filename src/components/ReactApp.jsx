@@ -4,6 +4,7 @@ import logo from '../assets/logo.svg';
 
 const App = styled('div')`
 	text-align: center;
+	width: 100vw;
 `
 const AppHeader = styled('header')`
 	background-color: #282c34;
@@ -54,9 +55,6 @@ const ReactApp = () => (
 				
 			</p>
 			<ReactLogo className="react-logo" src={logo} alt="logo" />
-			<p>
-				Edit <code>src/App.js</code> and save to reload.
-			</p>
 			<AppLink
 				className="App-link"
 				href="https://reactjs.org"
