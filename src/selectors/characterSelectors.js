@@ -16,3 +16,5 @@ export const selectCharacterComics = (state) => state.collections[CHARACTER_COMI
 export const selectCharacterEvents = (state) => state.collections[CHARACTER_EVENTS];
 export const selectCharacterSeries = (state) => state.collections[CHARACTER_SERIES];
 export const selectCharacterStories = (state) => state.collections[CHARACTER_STORIES];
+
+export const selectCharacterParams = (state) => state.collections.params[CHARACTER];

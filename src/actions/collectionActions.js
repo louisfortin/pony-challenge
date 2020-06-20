@@ -1,8 +1,10 @@
 import {
+  ADD_TO_COLLECTION,
   FETCH_COLLECTION,
   FETCH_COLLECTION_FAILURE,
   SET_COLLECTION,
-  SET_COLLECTION_ELEMENT
+  SET_COLLECTION_ELEMENT,
+  UPDATE_PARAMS
 } from '../actionTypes';
 
 export const fetchHeroes = () => ({
@@ -14,13 +16,22 @@ export const fetchHeroFail = (err) => ({
   payload: {
     err
   }
-})
+});
+
+export const addCharactersToCollection = (name, values, idAttr) => ({
+  type: ADD_TO_COLLECTION,
+  payload: {
+    name,
+    values,
+    idAttr
+  }
+});
 
 export const setCharacterCollection = (name, values) => ({
   type: SET_COLLECTION,
   payload: {
     name,
-  	values
+    values
   }
 });
 
@@ -30,5 +41,13 @@ export const setCharacterCollectionElement = (name, value, idAttr) => ({
     name,
     value,
     idAttr
+  }
+});
+
+export const updateParams = (name, value) => ({
+  type: UPDATE_PARAMS,
+  payload: {
+    name,
+    value
   }
 });

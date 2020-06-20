@@ -33,22 +33,22 @@ class CharacterContainer extends Component {
 				getCharacterAppearances(
 					character.comics.collectionURI,
 					CHARACTER_COMICS,
-					{ offset: 0, limit: character.comics.available }
+					{ offset: 0, limit: Math.min(character.comics.available, 100) }
 				);
 				getCharacterAppearances(
 					character.events.collectionURI,
 					CHARACTER_EVENTS,
-					{ offset: 0, limit: character.events.available }
+					{ offset: 0, limit: Math.min(character.events.available, 100) }
 				);
 				getCharacterAppearances(
 					character.series.collectionURI,
 					CHARACTER_SERIES,
-					{ offset: 0, limit: character.series.available }
+					{ offset: 0, limit: Math.min(character.series.available, 100) }
 				);
 				getCharacterAppearances(
 					character.stories.collectionURI,
 					CHARACTER_STORIES,
-					{ offset: 0, limit: character.stories.available }
+					{ offset: 0, limit: Math.min(character.stories.available, 100) }
 				);
 			}
 		});

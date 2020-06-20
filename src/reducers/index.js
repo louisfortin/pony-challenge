@@ -8,6 +8,12 @@ export const replaceOrAddCollectionElement = (collection, element, idAttr) => {
   return [ ...collection ];
 }
 
+export const addNonExistingElements = (collection, values, idAttr) => {
+  const ids = collection.map((e) => e[idAttr]);
+  const newValues = values.filter((e) => ids.indexOf(e[idAttr]) === -1);
+  return [ ...collection ].concat(newValues);
+}
+
 export default combineReducers({
   collections
 });

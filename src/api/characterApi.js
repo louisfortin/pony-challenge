@@ -1,7 +1,7 @@
 import { get, getQueryParams, marvelApiKey } from '../utilities/apiUtilities';
 
-export const fetchCharacters = () => get({
-	url: `/v1/public/characters?apikey=${marvelApiKey}`
+export const fetchCharacters = (params) => get({
+	url: `/v1/public/characters?apikey=${marvelApiKey}${getQueryParams(params)}`
 });
 
 export const fetchCharacter = (id) => get({
