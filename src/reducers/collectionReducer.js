@@ -1,12 +1,11 @@
 import { RESET_COLLECTION, SET_COLLECTION, SET_COLLECTION_ELEMENT } from '../actionTypes';
-import { ARTICLES, WHISKEYS } from '../constants/productTypes';
+import { CHARACTER } from '../constants/characterTypes';
 import { replaceOrAddCollectionElement } from './index';
 
 export const initialCollectionState = [];
 
 const initialState = {
-  [ARTICLES]: [ ...initialCollectionState ],
-	[WHISKEYS]: [ ...initialCollectionState ]
+  [CHARACTER]: [ ...initialCollectionState ]
 };
 
 /**
@@ -17,6 +16,8 @@ const collectionReducer = (state = initialState, action) => {
     // @deprecated. Still here for BC.
     case SET_COLLECTION: {
       const { name, values } = action.payload;
+      console.log('name : ', name);
+      console.log('values : ', values);
       return {
         ...state,
         [name]: [ ...values ]

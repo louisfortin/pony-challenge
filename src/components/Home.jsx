@@ -1,56 +1,67 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 // actions
-import { getArticles, getWhiskeys } from '../actions/productActions';
+import { getCharacters } from '../actions/characterActions';
 // selectors
-import { selectArticles, selectWhiskeys } from '../selectors/productSelectors';
+import { selectCharacters } from '../selectors/characterSelectors';
 // components
-import WhiskeyListItem from './WhiskeyListItem';
+import CharacterListItem from './CharacterListItem';
 
 const App = styled('div')`
+	margin-top: -20px;
 	text-align: center;
+	width: 90%;
+	margin: auto;
+
+	h1 {
+		padding: 50px 0;
+		margin: 0 auto;
+		color: white;
+		text-transform: uppercase
+	}
+`;
+
+const ListItems = styled('div')`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	text-decoration:none;
 `;
 
 class Home extends Component {
 	componentDidMount = () => {
-		const { getArticles, getWhiskeys } = this.props;
-		getArticles();
-		getWhiskeys();
+		const { getCharacters } = this.props;
+		getCharacters();
 	}
 
 	render = () => {
-		const { whiskeys } = this.props;
+		const { characters } = this.props;
 		return (
 			<App>
-				<p>Whiskey Selection</p>
-				{whiskeys.map((whiskey) => (
-					<NavLink key={whiskey.title} to={`/whiskey/${whiskey.title}`}>
-						<WhiskeyListItem whiskey={whiskey} />
-					</NavLink>
-				))}
+				<h1>Marvel's characters</h1>
+				<ListItems>
+					{characters.map((character) => (
+						<CharacterListItem character={character} />
+					))}
+				</ListItems>
 			</App>
 		)
 	}
 };
 
 Home.propTypes = {
-	articles: PropTypes.array.isRequired,
-	getArticles: PropTypes.func.isRequired,
-	getWhiskeys: PropTypes.func.isRequired,
-  whiskeys: PropTypes.array.isRequired
+  characters: PropTypes.array.isRequired,
+	getCharacters: PropTypes.func.isRequired
 };
 
 const mapState = (state) => ({
-	articles: selectArticles(state),
-	whiskeys: selectWhiskeys(state)
+	characters: selectCharacters(state)
 });
 
 const mapDispatch = (dispatch) => ({
-	getArticles: () => dispatch(getArticles()),
-	getWhiskeys: () => dispatch(getWhiskeys())
+	getCharacters: () => dispatch(getCharacters())
 });
 
 export default connect(mapState, mapDispatch)(Home);

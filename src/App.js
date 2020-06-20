@@ -8,7 +8,7 @@ import {
 // components
 import Home from './components/Home';
 import ReactApp from './components/ReactApp';
-import WhiskeyContainer from './components/WhiskeyContainer';
+import CharacterContainer from './components/CharacterContainer';
 
 const App = () => {
   return (
@@ -17,19 +17,16 @@ const App = () => {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route exact path="/home">
             <Home />
           </Route>
           <Route exact path="/thank-you">
             <ReactApp />
           </Route>
-          <Route exact path="/whiskey/:id" render={({ match: { params: { id }}} ) => (
-            <WhiskeyContainer id={id} />
+          <Route exact path="/:id" render={({ match: { params: { id }}} ) => (
+            <CharacterContainer id={id} />
           )} />
           <Route>
-            <Redirect to="/home" />
+            <Redirect to="/" />
           </Route>
         </Switch>
     </Router>
