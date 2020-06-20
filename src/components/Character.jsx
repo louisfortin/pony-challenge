@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {
   characterLoader,
@@ -8,16 +8,15 @@ import {
   selectCharacterEvents,
   selectCharacterSeries,
   selectCharacterStories
-} from "../selectors/characterSelectors";
+} from '../selectors/characterSelectors';
 import AppearanceSection from './AppearanceSection';
 import LinksSection from './LinksSection';
 import Loader from './Loader';
 import { getCharacterImageUrl } from '../utilities/characterUtilities';
 
-const HeroView = styled("div")`
+const HeroView = styled('div')`
 	width: 100vw;
-	height: 100%;
-  margin: auto;
+  margin: 30px auto;
   font-weight: regular;
   font-size: 18px;
   color: white
@@ -25,7 +24,8 @@ const HeroView = styled("div")`
   h2 {
     font-weight: bold;
     font-size: 36px;
-    margin: 50px auto;
+    margin-bottom: 50px;
+    text-align: center;
   }
 
   p {
@@ -33,7 +33,7 @@ const HeroView = styled("div")`
   }
 `;
 
-const Hero = styled("div")`
+const Hero = styled('div')`
   width: 80%;
   margin: auto;
   display: flex;
@@ -41,10 +41,9 @@ const Hero = styled("div")`
   border-radius: 5px;
 `;
 
-const NotFoundPage = styled("div")`
+const NotFoundPage = styled('div')`
   text-align: left;
   color: white;
-  margin: 0 0 40% 36px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -106,7 +105,7 @@ class Character extends Component {
                   className="hero-picture"
                   src={getCharacterImageUrl(character)}
                 />
-                <p>{character.description}</p>
+                <p>Description : {character.description || '-'}</p>
                 <p>Last modification: {getDate(character.modified)}</p>
                 <AppearanceSection
                   message="Appearances in comics"
@@ -144,7 +143,7 @@ class Character extends Component {
             <NotFoundPage>
               <h2>Sorry, this character doesn't exist !</h2>
               <span>
-                Go back to the <a href='/'>main page</a>
+                Go back to the <a href='/home'>main page</a>
               </span>
             </NotFoundPage>
           )}

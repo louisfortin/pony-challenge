@@ -43,7 +43,7 @@ class Home extends Component {
 				<h1>Marvel's characters</h1>
 				<ListItems>
 					{characters.map((character) => (
-						<CharacterListItem character={character} />
+						<CharacterListItem key={character.id} character={character} />
 					))}
 				</ListItems>
 			</App>

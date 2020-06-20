@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 // actions
 import { getCharacter, getCharacterAppearances } from '../actions/characterActions';
 // selectors
@@ -13,6 +14,16 @@ import {
 } from '../constants/characterTypes';
 // component
 import Character from './Character';
+import { TiArrowBack } from 'react-icons/ti';
+
+const BackButton = styled('button')`
+	all: unset;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 10px 0 0 10px;
+	cursor: pointer;
+`;
 
 class CharacterContainer extends Component {
 	componentDidMount = () => {
@@ -44,16 +55,24 @@ class CharacterContainer extends Component {
 	}
 
 	render = () => {
-		const { character } = this.props;
+		const { character, history } = this.props;
 		return (
-			<Character character={character} />
+			<>
+				<Character character={character} />
+				{character && (
+					<BackButton onClick={history.goBack} >
+						<TiArrowBack color="white" size={36} />
+					</BackButton>
+				)}
+			</>
 		)
 	}
 };
 
 CharacterContainer.propTypes = {
-	id: PropTypes.string.isRequired,
-  character: PropTypes.any
+  character: PropTypes.any,
+	history: PropTypes.any.isRequired,
+	id: PropTypes.string.isRequired
 };
 
 const mapState = (state, { id }) => ({
