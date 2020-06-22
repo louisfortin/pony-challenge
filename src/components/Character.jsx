@@ -56,7 +56,6 @@ const CharacterPicture = styled('img')`
   @media all and (max-width: 1000px)  {
 		width: 100%;
 		margin: 0 0 10px 0 !important;
-    border-radius: 50%;
   }
 `;
 
