@@ -20,7 +20,7 @@ import LinksSection from './LinksSection';
 import Loader from './Loader';
 import { getCharacterImageUrl } from '../utilities/characterUtilities';
 
-const HeroView = styled('div')`
+const CharacterView = styled('div')`
 	width: 100vw;
   margin: 30px auto;
   font-weight: regular;
@@ -39,7 +39,7 @@ const HeroView = styled('div')`
   }
 `;
 
-const Hero = styled('div')`
+const CharacterContainer = styled('div')`
   width: 80%;
   margin: auto;
   display: flex;
@@ -47,7 +47,7 @@ const Hero = styled('div')`
   border-radius: 5px;
 `;
 
-const HeroPicture = styled('img')`
+const CharacterPicture = styled('img')`
   float: right;
   width: 50%;
   margin: 0 0 10px 15px;
@@ -121,16 +121,16 @@ class Character extends Component {
     } = this.props;
     const { comicsToggle, seriesToggle, storiesToggle, eventsToggle } = this.state;
     return (
-      <HeroView>
+      <CharacterView>
         {loader && (
           <Loader />
         )}
-        <Hero>
+        <CharacterContainer>
           {character && (
             <>
               <h2>{character.name}</h2>
               <div>
-                <HeroPicture
+                <CharacterPicture
                   alt={character.name + '_picture'}
                   src={getCharacterImageUrl(character)}
                 />
@@ -180,8 +180,8 @@ class Character extends Component {
               </span>
             </NotFoundPage>
           )}
-        </Hero>
-      </HeroView>
+        </CharacterContainer>
+      </CharacterView>
     );
   };
 }

@@ -7,14 +7,14 @@ import {
   UPDATE_PARAMS
 } from '../actionTypes';
 
-export const fetchHeroes = (name) => ({
+export const fetchCharactersAction = (name) => ({
   type: FETCH_COLLECTION,
   payload: {
     name
   }
 });
 
-export const fetchHeroFail = (err, name) => ({
+export const fetchCharactersFail = (err, name) => ({
   type: FETCH_COLLECTION_FAILURE,
   payload: {
     name,

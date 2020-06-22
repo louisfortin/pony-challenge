@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { getCharacterImageUrl } from '../utilities/characterUtilities';
 
-const Hero = styled('div')`
+const Character = styled('div')`
 	overflow: hidden;
 	width: 400px;
 	max-height: 500px;
@@ -49,7 +49,7 @@ class CharacterListItem extends Component {
 	render = () => {
 		const { character } = this.props;
 		return character && (
-			<Hero>
+			<Character>
 				<NavItem key={character.id} to={`/${character.id}`}>
 					<h2>{character.name}</h2>
 					<img
@@ -58,7 +58,7 @@ class CharacterListItem extends Component {
 						src={getCharacterImageUrl(character)}
 					/>
 				</NavItem>
-			</Hero>
+			</Character>
 		)
 	}
 };
