@@ -41,6 +41,17 @@ const Hero = styled('div')`
   border-radius: 5px;
 `;
 
+const HeroPicture = styled('img')`
+  float: right;
+  width: 50%;
+  margin: 0 0 10px 15px;
+
+  @media all and (max-width: 1000px)  {
+		width: 100%;
+		margin: 0 0 10px 0 !important;
+  }
+`
+
 const NotFoundPage = styled('div')`
   text-align: left;
   color: white;
@@ -100,9 +111,8 @@ class Character extends Component {
             <>
               <h2>{character.name}</h2>
               <div>
-                <img
+                <HeroPicture
                   alt={character.name + '_picture'}
-                  className="hero-picture"
                   src={getCharacterImageUrl(character)}
                 />
                 <p>Description : {character.description || '-'}</p>

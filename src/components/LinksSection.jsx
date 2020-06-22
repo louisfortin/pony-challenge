@@ -8,6 +8,21 @@ const Links = styled('div')`
 	height: auto;
 `;
 
+const Link = styled('a')`
+	text-decoration: none;
+	text-align: center;
+	min-width: 80px;
+	margin: 5px;
+	border: 1px solid white;
+	border-radius: 25px;
+	padding: 10px;
+	color: white;
+
+	@media all and (max-width: 1000px)  {
+		width: 100%
+	}
+`;
+
 const getMessage = (type) => {
 	const tab = {
 		detail: 'Details',
@@ -21,15 +36,14 @@ const LinksSection = ({ links }) => (
 	<Links>
 		<p>Links : </p>
 		{links.map((link) => (
-			<a
+			<Link
 				key={`link-${link.type}`}
-				className="marvel-link"
 				href={link.url}
 				target="_blank" 
 				rel="noopener noreferrer"
 			>
 				<span>{getMessage(link.type)}</span>
-			</a>
+			</Link>
 		))}
 	</Links>
 );
