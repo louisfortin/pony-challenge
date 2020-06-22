@@ -13,12 +13,14 @@ import {
   fetchCharacters
 } from '../api/characterApi';
 
-export const getCharacters = (params) => dispatch => fetchCharacters(params)
+export const getCharacters = (params) => (dispatch) => {
+  dispatch(fetchHeroes());
+  return fetchCharacters(params)
   .then(({ data: { data: { results }}}) => {
     const action = params.offset === 0 ? setCharacterCollection : addCharactersToCollection;
     dispatch(action(CHARACTER, results, 'id'));
     dispatch(updateParams(CHARACTER, params));
-  });
+  })};
 
 export const getCharacter = (id) => (dispatch) => {
   dispatch(fetchHeroes());

@@ -6,10 +6,15 @@ import debounce from 'lodash.debounce';
 // actions
 import { getCharacters } from '../actions/characterActions';
 // selectors
-import { selectCharacters, selectCharacterParams } from '../selectors/characterSelectors';
+import {
+	characterLoader,
+	selectCharacters,
+	selectCharacterParams
+} from '../selectors/characterSelectors';
 // components
 import CharacterListItem from './CharacterListItem';
-import { FaSearch } from 'react-icons/fa'
+import Loader from './Loader';
+import { FaSearch } from 'react-icons/fa';
 
 const App = styled('div')`
 	margin-top: -20px;
@@ -38,16 +43,14 @@ const SearchBar = styled('div')`
 		color: white;
 		min-width: 50px;
 		text-align: center;
+		border: 1px solid white;
 	}
 
   input {
 		width: 200px;
 		padding: 10px;
 		outline: none;
-	}
-
-	input:focus {
-		border: 2px solid black;
+		border: 1px solid white;
 	}
 `;
 
@@ -56,6 +59,8 @@ const ListItems = styled('div')`
 	flex-wrap: wrap;
 	justify-content: space-around;
 	text-decoration:none;
+	width: 80%;
+	margin: auto;
 `;
 
 class Home extends Component {
@@ -82,7 +87,7 @@ class Home extends Component {
   debouncer = debounce(this.handleSearch, 500);
 
 	render = () => {
-		const { characters } = this.props;
+		const { characters, loader } = this.props;
 		return (
 			<App onScroll={this.handleScroll}>
 				<h1>Marvel's characters</h1>
@@ -100,6 +105,9 @@ class Home extends Component {
 						<CharacterListItem key={character.id} character={character} />
 					))}
 				</ListItems>
+				{loader && (
+					<Loader />
+				)}
 			</App>
 		)
 	}
@@ -113,6 +121,7 @@ Home.propTypes = {
 
 const mapState = (state) => ({
 	characters: selectCharacters(state),
+	loader: characterLoader(state),
 	queryParams: selectCharacterParams(state)
 });
 
