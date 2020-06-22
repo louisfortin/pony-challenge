@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import collections from './collectionReducer';
+import loaders from './loaderReducer';
 
 export const replaceOrAddCollectionElement = (collection, element, idAttr) => {
   const el = collection.find((e) => e[idAttr] === element[idAttr]);
@@ -15,5 +16,6 @@ export const addNonExistingElements = (collection, values, idAttr) => {
 }
 
 export default combineReducers({
-  collections
+  collections,
+  loaders
 });

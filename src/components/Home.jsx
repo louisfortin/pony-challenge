@@ -7,10 +7,10 @@ import debounce from 'lodash.debounce';
 import { getCharacters } from '../actions/characterActions';
 // selectors
 import {
-	characterLoader,
 	selectCharacters,
 	selectCharacterParams
 } from '../selectors/characterSelectors';
+import { characterLoader } from '../selectors/loaderSelectors';
 // components
 import CharacterListItem from './CharacterListItem';
 import Loader from './Loader';

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {
-  characterLoader,
   selectCharacterComics,
   selectCharacterEvents,
   selectCharacterSeries,
   selectCharacterStories
 } from '../selectors/characterSelectors';
+import { characterLoader } from '../selectors/loaderSelectors';
 import AppearanceSection from './AppearanceSection';
 import LinksSection from './LinksSection';
 import Loader from './Loader';

@@ -14,7 +14,7 @@ import {
 } from '../api/characterApi';
 
 export const getCharacters = (params) => (dispatch) => {
-  dispatch(fetchHeroes());
+  dispatch(fetchHeroes(CHARACTER));
   return fetchCharacters(params)
   .then(({ data: { data: { results }}}) => {
     const action = params.offset === 0 ? setCharacterCollection : addCharactersToCollection;
@@ -23,14 +23,14 @@ export const getCharacters = (params) => (dispatch) => {
   })};
 
 export const getCharacter = (id) => (dispatch) => {
-  dispatch(fetchHeroes());
+  dispatch(fetchHeroes(CHARACTER));
   return fetchCharacter(id)
     .then(({ data: { data: { results }}}) => {
       dispatch(setCharacterCollectionElement(CHARACTER, results[0], 'id'));
       return results[0]
     })
     .catch((err) => {
-      dispatch(fetchHeroFail(err));
+      dispatch(fetchHeroFail(err, CHARACTER));
       return null;
     });
 };

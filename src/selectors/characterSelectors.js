@@ -6,8 +6,6 @@ import {
 	CHARACTER_STORIES
 } from '../constants/characterTypes';
 
-export const characterLoader = (state) => state.collections.loader;
-
 export const selectCharacters = (state) => state.collections[CHARACTER];
 export const selectCharacter = (state, id) => state.collections[CHARACTER]
 	.find((character) => character && character.id === Number(id));
