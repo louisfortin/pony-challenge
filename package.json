@@ -22,6 +22,11 @@
     "reselect": "^4.0.0",
     "styled-components": "^4.4.1"
   },
+  "resolutions": {
+    "http-proxy": "1.18.1",
+    "minimist": "1.2.5",
+    "yargs-parser": "18.1.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
