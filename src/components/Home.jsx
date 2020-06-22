@@ -28,6 +28,7 @@ const App = styled('div')`
 		color: white;
 		text-transform: uppercase
 	}
+
 	h3 {
 		padding: 50px 0;
 		margin: 0 auto;
@@ -68,18 +69,33 @@ const ListItems = styled('div')`
 `;
 
 class Home extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchValue: this.props.queryParams.start || ''
+		}
+    this.debouncer = debounce(this.handleSearch, 500);
+	}
 	componentDidMount = () => {
 		const { getCharacters, queryParams } = this.props;
 		getCharacters({ ...queryParams });
 	}
+
+  handleChange(searchValue) {
+    this.setState({ searchValue });
+    this.debouncer(searchValue);
+  }
 	
 	handleScroll = ({ target }) => {
 		if (target.scrollHeight - target.scrollTop === target.clientHeight) {
-			const { getCharacters, queryParams } = this.props;
-			getCharacters({
-				...queryParams,
-				offset: queryParams.offset + queryParams.limit
-			});
+			const { characters, getCharacters, queryParams } = this.props;
+			// assert there are caracters remaining
+			if (characters.length === queryParams.offset + queryParams.limit) {
+				getCharacters({
+					...queryParams,
+					offset: queryParams.offset + queryParams.limit
+				});
+			}
 		}
   }
 
@@ -87,8 +103,6 @@ class Home extends Component {
 		const { getCharacters, queryParams } = this.props;
 		getCharacters({ ...queryParams, offset: 0, start });
 	}
-
-  debouncer = debounce(this.handleSearch, 500);
 
 	render = () => {
 		const { characters, loader } = this.props;
@@ -101,7 +115,8 @@ class Home extends Component {
 						type="text"
 						placeholder="search"
 						name="search"
-						onChange={(e) => this.debouncer(e.target.value)}
+						onChange={(e) => {this.handleChange(e.target.value)}}
+						value={this.state.searchValue}
 					/>
 				</SearchBar>
 				<ListItems>
