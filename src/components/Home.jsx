@@ -6,10 +6,8 @@ import debounce from 'lodash.debounce';
 // actions
 import { getCharacters } from '../actions/characterActions';
 // selectors
-import {
-	selectCharacters,
-	selectCharacterParams
-} from '../selectors/characterSelectors';
+import { selectCharacters } from '../selectors/characterSelectors';
+import { selectCharacterParams } from '../selectors/querySelectors';
 import { characterLoader } from '../selectors/loaderSelectors';
 // components
 import CharacterListItem from './CharacterListItem';
@@ -25,6 +23,12 @@ const App = styled('div')`
 	overflow-y: scroll
 
 	h1 {
+		padding: 50px 0;
+		margin: 0 auto;
+		color: white;
+		text-transform: uppercase
+	}
+	h3 {
 		padding: 50px 0;
 		margin: 0 auto;
 		color: white;
@@ -66,7 +70,7 @@ const ListItems = styled('div')`
 class Home extends Component {
 	componentDidMount = () => {
 		const { getCharacters, queryParams } = this.props;
-		getCharacters({ ...queryParams, limit: 12 });
+		getCharacters({ ...queryParams });
 	}
 	
 	handleScroll = ({ target }) => {
@@ -105,6 +109,9 @@ class Home extends Component {
 						<CharacterListItem key={character.id} character={character} />
 					))}
 				</ListItems>
+				{(characters.length === 0 && !loader) && (
+					<h3>No results !</h3>
+				)}
 				{loader && (
 					<Loader />
 				)}

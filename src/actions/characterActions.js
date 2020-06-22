@@ -35,5 +35,7 @@ export const getCharacter = (id) => (dispatch) => {
     });
 };
 
-export const getCharacterAppearances = (url, collection, params) => (dispatch) => fetchCharacterAppearances(url, params)
-  .then(({ data: { data: { results }}}) => dispatch(setCharacterCollection(collection, results)));
+export const getCharacterAppearances = (url, collection, params) => (dispatch) => {
+  dispatch(fetchHeroes(collection));
+  return fetchCharacterAppearances(url, params)
+    .then(({ data: { data: { results }}}) => dispatch(setCharacterCollection(collection, results)))};

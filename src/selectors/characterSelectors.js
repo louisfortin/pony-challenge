@@ -15,4 +15,3 @@ export const selectCharacterEvents = (state) => state.collections[CHARACTER_EVEN
 export const selectCharacterSeries = (state) => state.collections[CHARACTER_SERIES];
 export const selectCharacterStories = (state) => state.collections[CHARACTER_STORIES];
 
-export const selectCharacterParams = (state) => state.collections.params[CHARACTER];

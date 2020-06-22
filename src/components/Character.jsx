@@ -8,7 +8,13 @@ import {
   selectCharacterSeries,
   selectCharacterStories
 } from '../selectors/characterSelectors';
-import { characterLoader } from '../selectors/loaderSelectors';
+import {
+  characterLoader,
+  selectComicsLoader,
+  selectEventsLoader,
+  selectSeriesLoader,
+  selectStoriesLoader
+} from '../selectors/loaderSelectors';
 import AppearanceSection from './AppearanceSection';
 import LinksSection from './LinksSection';
 import Loader from './Loader';
@@ -45,12 +51,14 @@ const HeroPicture = styled('img')`
   float: right;
   width: 50%;
   margin: 0 0 10px 15px;
+  border-radius: 5%;
 
   @media all and (max-width: 1000px)  {
 		width: 100%;
 		margin: 0 0 10px 0 !important;
+    border-radius: 50%;
   }
-`
+`;
 
 const NotFoundPage = styled('div')`
   text-align: left;
@@ -99,7 +107,18 @@ class Character extends Component {
   };
 
   render = () => {
-    const { character, comics, events, loader, series, stories } = this.props;
+    const {
+      character,
+      comics,
+      comicsLoader,
+      events,
+      eventsLoader,
+      loader,
+      series,
+      seriesLoader,
+      stories,
+      storiesLoader,
+    } = this.props;
     const { comicsToggle, seriesToggle, storiesToggle, eventsToggle } = this.state;
     return (
       <HeroView>
@@ -118,6 +137,7 @@ class Character extends Component {
                 <p>Description : {character.description || '-'}</p>
                 <p>Last modification: {getDate(character.modified)}</p>
                 <AppearanceSection
+                  loading={comicsLoader}
                   message="Appearances in comics"
                   number={character.comics.available}
                   show={comicsToggle}
@@ -125,6 +145,7 @@ class Character extends Component {
                   values={comics}
                 />
                 <AppearanceSection
+                  loading={seriesLoader}
                   message="Appearances in series"
                   number={character.series.available}
                   show={seriesToggle}
@@ -132,6 +153,7 @@ class Character extends Component {
                   values={series}
                 />
                 <AppearanceSection
+                  loading={storiesLoader}
                   message="Appearances in stories"
                   number={character.stories.available}
                   show={storiesToggle}
@@ -139,6 +161,7 @@ class Character extends Component {
                   values={stories}
                 />
                 <AppearanceSection
+                  loading={eventsLoader}
                   message="Events"
                   number={character.events.available}
                   show={eventsToggle}
@@ -166,18 +189,26 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.any,
   comics: PropTypes.array,
+  comicsLoader: PropTypes.bool.isRequired,
   events: PropTypes.array,
+  eventsLoader: PropTypes.bool.isRequired,
   loader: PropTypes.bool.isRequired,
   series: PropTypes.array,
-  stories: PropTypes.array
+  seriesLoader: PropTypes.bool.isRequired,
+  stories: PropTypes.array,
+  storiesLoader: PropTypes.bool.isRequired,
 };
 
 const mapState = (state) => ({
   loader: characterLoader(state),
   comics: selectCharacterComics(state),
+  comicsLoader: selectComicsLoader(state),
   events: selectCharacterEvents(state),
+  eventsLoader: selectEventsLoader(state),
   series: selectCharacterSeries(state),
+  seriesLoader: selectSeriesLoader(state),
   stories: selectCharacterStories(state),
+  storiesLoader: selectStoriesLoader(state),
 });
 
 export default connect(mapState)(Character);

@@ -7,7 +7,7 @@ import {
 } from '../constants/characterTypes';
 
 export const characterLoader = (state) => state.loaders[CHARACTER];
-export const comicsLoader = (state) => state.loaders[CHARACTER_COMICS];
-export const eventsLoader = (state) => state.loaders[CHARACTER_EVENTS];
-export const seriesLoader = (state) => state.loaders[CHARACTER_SERIES];
-export const storiesLoader = (state) => state.loaders[CHARACTER_STORIES];
+export const selectComicsLoader = (state) => state.loaders[CHARACTER_COMICS];
+export const selectEventsLoader = (state) => state.loaders[CHARACTER_EVENTS];
+export const selectSeriesLoader = (state) => state.loaders[CHARACTER_SERIES];
+export const selectStoriesLoader = (state) => state.loaders[CHARACTER_STORIES];

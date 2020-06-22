@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AppearanceList from './AppearanceList';
+import Loader from './Loader';
 
 const Section = styled('div')`
   button {
@@ -11,9 +12,14 @@ const Section = styled('div')`
   }
 `;
 
+const LoaderContainer = styled('div')`
+	height: 50px;
+	width: 50px;
+`;
+
 const getToggleMessage = (show) => show ? 'hide' : 'show';
 
-const AppearanceSection = ({ number, message, show, onClick, values }) => (
+const AppearanceSection = ({ loading, number, message, show, onClick, values }) => (
 	<Section number={number}>
 		<p>
 			{message}: {number}
@@ -21,13 +27,19 @@ const AppearanceSection = ({ number, message, show, onClick, values }) => (
 				({getToggleMessage(show)})
 			</button>
 		</p>
-		{show && (
+		{(show && !loading) && (
 			<AppearanceList items={values} />
+		)}
+		{(show && loading) && (
+			<LoaderContainer>
+				<Loader size="xs" />
+			</LoaderContainer>
 		)}
 	</Section>
 );
 
 AppearanceSection.propTypes = {
+	loading: PropTypes.bool.isRequired,
 	message: PropTypes.string.isRequired,
 	number: PropTypes.number.isRequired,
 	onClick: PropTypes.func.isRequired,
